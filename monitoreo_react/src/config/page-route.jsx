@@ -1,11 +1,9 @@
 import React from 'react';
 import { Redirect } from 'react-router';
 
-import DashboardV2 from './../pages/dashboard/dashboard-v2.js';
+import Dashboard from './../pages/dashboard/dashboard';
 import ListServer from '../pages/listServer/listServer';
-import UIModalNotification from './../pages/ui/ui-modal-notification.js';
-import TableBasic from './../pages/table/table-basic.js';
-import TableData from './../pages/table/table-data.js';
+import ServersGraph from '../pages/serversGraph/serversGraph'
 
 const routes = [
   {
@@ -17,13 +15,19 @@ const routes = [
     path: '/',
     title: 'Home',
     exact: true,
-    component: () => <DashboardV2 />
+    component: () => <Dashboard />
   },
   {
     path: '/serverInfo',
     title: 'Lista de Servidores',
     exact: true,
     component: () => <ListServer />
+  },
+  {
+    path: '/serverGraph/:id',
+    title: 'Grafica de Servidores',
+    exact: true,
+    component: () => <ServersGraph />
   },
 ];
 

@@ -21,6 +21,7 @@ class ListServer extends Component{
 	}
 	render(){
 		const data = this.state.data;
+		console.log(data);
 		const defaultSorted = [{
 			id: "name",
 			desc: false
@@ -32,6 +33,9 @@ class ListServer extends Component{
 				{
 					Header: "Nombre",
 					accessor: "name",
+					Cell: row => (
+						<Link to={ "/serverGraph/" + row.original.id }>{ row.row.name }</Link>
+					)
 				},{
 					Header: "Output",
 					accessor: "output"
@@ -68,9 +72,8 @@ class ListServer extends Component{
 		return(
 			<div>
 				<ol className="breadcrumb float-xl-right">
-					<li className="breadcrumb-item"><Link to="/table/data">Home</Link></li>
-					<li className="breadcrumb-item"><Link to="/table/data">Tables</Link></li>
-					<li className="breadcrumb-item active">Data Tables</li>
+					<li className="breadcrumb-item"><Link to="/">Home</Link></li>
+					<li className="breadcrumb-item active">Servidores</li>
 				</ol>
 				<h1 className="page-header">React Table <small>official documentation <a href="https://react-table.js.org/#/story/readme" target="_blank" rel="noopener noreferrer">here</a></small></h1>
 				<Panel>

@@ -5,7 +5,7 @@ import d3 from 'd3';
 import { Panel, PanelHeader } from './../../components/panel/panel.jsx';
 import MapChart from '../../components/map-chart/map-chart';
 
-class DashboardV2 extends React.Component {
+class Dashboard extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -134,23 +134,23 @@ class DashboardV2 extends React.Component {
 				data.map(server => {
 					switch (server.current_state) {
 						case 0:
-							serverUp++
+							serverUp++;
 							break;
 						case 1:
-							serverWarning++
+							serverWarning++;
 							break;
 						default:
-							serverCritical++
+							serverCritical++;
 							break;
 					}
 				})
-				
+
 				this.setState({
 					serverUp,
 					serverWarning,
 					serverCritical,
 					totalServer: data.length,
-				})
+				});
 			})
 	}
 	render() {
@@ -159,14 +159,14 @@ class DashboardV2 extends React.Component {
 				<ol className="breadcrumb float-xl-right">
 					<li className="breadcrumb-item active"><Link to="/dashboard/v2">Home</Link></li>
 				</ol>
-				<h1 className="page-header">Vista iniciar del servidores</h1>
+				<h1 className="page-header">Estado de servicios</h1>
 				<div className="row">
 					<div className="col-xl-3 col-md-6">
 						<Link to="/serverInfo">
 							<div className="widget widget-stats bg-teal">
 								<div className="stats-icon stats-icon-lg"><i className="fa fa-globe fa-fw"></i></div>
 								<div className="stats-content">
-									<div className="stats-title">Servidores Arriba</div>
+									<div className="stats-title">Servicios Arriba</div>
 									<div className="stats-number">{this.state.serverUp}</div>
 									<div className="stats-progress progress">
 										<div className="progress-bar" style={{width: `${(this.state.serverUp / this.state.totalServer) * 100}%`}}></div>
@@ -181,7 +181,7 @@ class DashboardV2 extends React.Component {
 							<div className="widget widget-stats bg-blue">
 								<div className="stats-icon stats-icon-lg"><i className="fa fa-dollar-sign fa-fw"></i></div>
 								<div className="stats-content">
-									<div className="stats-title">Servidores Alertados</div>
+									<div className="stats-title">Servicios Alertados</div>
 									<div className="stats-number">{this.state.serverWarning}</div>
 									<div className="stats-progress progress">
 										<div className="progress-bar" style={{width: `${(this.state.serverWarning / this.state.totalServer) * 100}%`}}></div>
@@ -196,7 +196,7 @@ class DashboardV2 extends React.Component {
 							<div className="widget widget-stats bg-indigo">
 								<div className="stats-icon stats-icon-lg"><i className="fa fa-archive fa-fw"></i></div>
 								<div className="stats-content">
-									<div className="stats-title">Servidores abajo</div>
+									<div className="stats-title">Servicios abajo</div>
 									<div className="stats-number">{this.state.serverCritical}</div>
 									<div className="stats-progress progress">
 										<div className="progress-bar" style={{width: `${(this.state.serverCritical / this.state.totalServer) * 100}%`}}></div>
@@ -262,4 +262,4 @@ class DashboardV2 extends React.Component {
 	}
 };
 
-export default DashboardV2;
+export default Dashboard;
