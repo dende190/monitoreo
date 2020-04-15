@@ -33,59 +33,62 @@ class Register extends React.Component {
 				<div className="news-feed">
 					<div className="news-image" style={{ backgroundImage: 'url(/assets/img/login-bg/login-bg-9.jpg)' }}></div>
 					<div className="news-caption">
-						<h4 className="caption-title"><b>Color</b> Admin App</h4>
-						<p>
-							As a Color Admin app administrator, you use the Color Admin console to manage your organization’s account, such as add new users, manage security settings, and turn on the services you want your team to access.
-						</p>
+						<h4 className="caption-title"><b>ERC</b> Colombia</h4>
 					</div>
 				</div>
 				<div className="right-content">
 					<h1 className="register-header">
-						Sign Up
-						<small>Create your Color Admin Account. It’s free and always will be.</small>
+						Crea una cuenta
+						<small>Es rapido y fácil.</small>
 					</h1>
 					<div className="register-content">
 						<form className="margin-bottom-0" onSubmit={this.handleSubmit}>
-							<label className="control-label">Name <span className="text-danger">*</span></label>
+							<label className="control-label">Nombre <span className="text-danger">*</span></label>
 							<div className="row row-space-10">
 								<div className="col-md-6 m-b-15">
-									<input type="text" className="form-control" placeholder="First name" required />
+									<input type="text" className="form-control" placeholder="Nombre" required />
 								</div>
 								<div className="col-md-6 m-b-15">
-									<input type="text" className="form-control" placeholder="Last name" required />
+									<input type="text" className="form-control" placeholder="Apellido" required />
 								</div>
 							</div>
-							<label className="control-label">Email <span className="text-danger">*</span></label>
+							<label className="control-label">Correo <span className="text-danger">*</span></label>
 							<div className="row m-b-15">
 								<div className="col-md-12">
-									<input type="text" className="form-control" placeholder="Email address" required />
+									<input type="text" className="form-control" placeholder="Correo electronico" required />
 								</div>
 							</div>
-							<label className="control-label">Re-enter Email <span className="text-danger">*</span></label>
+							<label className="control-label">Confirmar correo<span className="text-danger">*</span></label>
 							<div className="row m-b-15">
 								<div className="col-md-12">
-									<input type="text" className="form-control" placeholder="Re-enter email address" required />
+									<input type="text" className="form-control" placeholder="Confirmar correo electronico" required />
 								</div>
 							</div>
-							<label className="control-label">Password <span className="text-danger">*</span></label>
+							<label className="control-label">Contraseña <span className="text-danger">*</span></label>
 							<div className="row m-b-15">
 								<div className="col-md-12">
-									<input type="password" className="form-control" placeholder="Password" required />
+									<input type="password" className="form-control" placeholder="contraseña" required />
+								</div>
+							</div>
+							<label className="control-label">Confirmar contraseña <span className="text-danger">*</span></label>
+							<div className="row m-b-15">
+								<div className="col-md-12">
+									<input type="password" className="form-control" placeholder="Confirmar contraseña" required />
 								</div>
 							</div>
 							<div className="checkbox checkbox-css m-b-30">
 								<div className="checkbox checkbox-css m-b-30">
 									<input type="checkbox" id="agreement_checkbox" value="" />
 									<label htmlFor="agreement_checkbox">
-										By clicking Sign Up, you agree to our <Link to="/user/register-v3">Terms</Link> and that you have read our <Link to="/user/register-v3">Data Policy</Link>, including our <Link to="/user/register-v3">Cookie Use</Link>.
+										Estoy de acuerdo con los <Link to="/user/register-v3">terminos</Link> de la empresa y he leido las <Link to="/user/register-v3">politicas</Link>, incluyendo el uso de <Link to="/user/register-v3">Cookies</Link>.
 									</label>
 								</div>
 							</div>
 							<div className="register-buttons">
-								<button type="submit" className="btn btn-primary btn-block btn-lg">Sign Up</button>
+								<button type="submit" className="btn btn-primary btn-block btn-lg">Crear mi cuenta</button>
 							</div>
 							<div className="m-t-20 m-b-40 p-b-40 text-inverse">
-								Already a member? Click <Link to="/user/login-v3">here</Link> to login.
+								¿ya tienes cuenta? <Link to="/user/login-v3">Inicia sesión</Link>
 							</div>
 							<hr />
 							<p className="text-center">
