@@ -15,13 +15,17 @@ class ListServer extends Component{
 
 		fetch(URI + apiServer)
 			.then(res => res.json())
-			.then(data => this.setState({
-				data
-			}));
+			.then(data => {
+				if(!data){
+					return;
+				}
+				this.setState({
+					data	
+				});
+			});
 	}
 	render(){
 		const data = this.state.data;
-		console.log(data);
 		const defaultSorted = [{
 			id: "name",
 			desc: false

@@ -131,6 +131,10 @@ class Dashboard extends React.Component {
 		fetch(URI + apiServer)
 			.then(res => res.json())
 			.then(data => {
+				if(!data){
+					return;
+				}
+
 				data.map(server => {
 					switch (server.current_state) {
 						case 0:
@@ -143,7 +147,7 @@ class Dashboard extends React.Component {
 							serverCritical++;
 							break;
 					}
-				})
+				});
 
 				this.setState({
 					serverUp,
