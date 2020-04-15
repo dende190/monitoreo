@@ -22,7 +22,6 @@ function generateGraph($time = "-1d", $graphArray = []){
 		'MAX',
 		'LAST'
 	);
-
 	$hostNagiosQuery = $pdoNagios->prepare('SELECT address FROM nagios_hosts WHERE host_id = :serverId');
 	$hostNagiosQuery->execute([':serverId' => $_GET['hostId']]);
 	$hostNagiosResult = $hostNagiosQuery->fetchAll(PDO::FETCH_ASSOC);
@@ -31,7 +30,7 @@ function generateGraph($time = "-1d", $graphArray = []){
 	$hostCactiQuery->execute([':serverId' => $hostNagiosResult[0]['address']]);
 	$hostCactiResult = $hostCactiQuery->fetchAll(PDO::FETCH_ASSOC);	
 
-	if (empty($hostCactiResult)) {
+	if (!$hostCactiResult) {
 		echo false;
 		return;
 	}
@@ -130,7 +129,6 @@ function generateGraph($time = "-1d", $graphArray = []){
 
 		if(!is_array($ret)) {
 		    $err = rrd_error();
-		    echo "rrd_graph() ERROR: $err\n";
 	  	}else{
 	  		$typeImage = pathinfo($imagesPath, PATHINFO_EXTENSION);
 		  	$dataImage = file_get_contents($imagesPath);

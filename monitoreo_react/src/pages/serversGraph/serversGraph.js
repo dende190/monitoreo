@@ -8,7 +8,7 @@ const ServersGraph = () => {
 	const URI = "http://localhost:8081/";
 	const apiGraphs = 'rrdtools/graphs.php';
 	let { id } = useParams();
-	let graphs = useInitialState(URI + apiGraphs);
+	let graphs = useInitialState(URI + apiGraphs + "?hostId=" + id);
 
 	return (
 		<div>
@@ -241,9 +241,10 @@ const ServersGraph = () => {
 			</div>
 			<div className="row">
 				{
-					graphs.map(graph => 
-						<Graph key={graph.id} {...graph} />
-					)
+					graphs &&
+						graphs.map(graph => 
+							<Graph key={graph.id} {...graph} />
+						)
 				}
 			</div>
 		</div>
