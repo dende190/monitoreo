@@ -164,6 +164,12 @@ class Dashboard extends React.Component {
 					<li className="breadcrumb-item active"><Link to="/dashboard/v2">Home</Link></li>
 				</ol>
 				<h1 className="page-header">Estado de servicios</h1>
+				<select className="browser-default custom-select mb-3">
+					<option selected>selecciona el servidor</option>
+					<option value="1">servidor1</option>
+					<option value="2">servidor2</option>
+					<option value="3">servidor3</option>
+				</select>
 				<div className="row">
 					<div className="col-xl-3 col-md-6">
 						<Link to="/serverInfo">
