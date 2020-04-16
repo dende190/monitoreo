@@ -76,13 +76,13 @@ class ListServer extends Component{
 		return(
 			<div>
 				<ol className="breadcrumb float-xl-right">
-					<li className="breadcrumb-item"><Link to="/">Home</Link></li>
+					<li className="breadcrumb-item"><Link to="/">Inicio</Link></li>
 					<li className="breadcrumb-item active">Servidores</li>
 				</ol>
-				<h1 className="page-header">React Table <small>official documentation <a href="https://react-table.js.org/#/story/readme" target="_blank" rel="noopener noreferrer">here</a></small></h1>
+				<h1 className="page-header">ERC Colombia<small> monitoreo de servidores </small></h1>
 				<Panel>
 					<PanelHeader>
-						React Table
+						Tabla de monitoreo
 					</PanelHeader>
 					<ReactTable filterable data={data} columns={tableColumns} defaultPageSize={10} defaultSorted={defaultSorted} className="-highlight" />
 				</Panel>
