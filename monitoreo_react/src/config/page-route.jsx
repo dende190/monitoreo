@@ -6,6 +6,7 @@ import ListServer from '../pages/listServer/listServer';
 import ServersGraph from '../pages/serversGraph/serversGraph'
 import Login from '../pages/user/login';
 import Register from '../pages/user/register';
+import Newuser from '../pages/user/newuser';
 
 const routes = [
   {
@@ -42,6 +43,12 @@ const routes = [
     title: 'Registro',
     exact: true,
     component: () => <Register />
+  },
+  {
+    path: '/newuser',
+    title: 'Nuevo usuario',
+    exact: true,
+    component: () => <Newuser />
   },
 ];
 
