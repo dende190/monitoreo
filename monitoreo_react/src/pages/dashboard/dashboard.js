@@ -122,7 +122,7 @@ class Dashboard extends React.Component {
 	}
 
 	componentDidMount(){
-		const URI = "http://localhost:8080/";
+		const URI = location.protocol + "://" + location.hostname + ":8080/";
 		const apiServer = 'nagiosStatusServices';
 		let serverUp = 0;
 		let serverWarning = 0;

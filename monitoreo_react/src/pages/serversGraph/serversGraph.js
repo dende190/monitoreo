@@ -5,7 +5,7 @@ import { UncontrolledPopover, PopoverHeader, PopoverBody } from 'reactstrap';
 import Graph from './graph';
 
 const ServersGraph = () => {
-	const URI = "http://localhost:8081/";
+	const URI = location.protocol + "://" + location.hostname + ":8081/";
 	const apiGraphs = 'rrdtools/graphs.php';
 	let { id } = useParams();
 	let graphs = useInitialState(URI + apiGraphs + "?hostId=" + id);

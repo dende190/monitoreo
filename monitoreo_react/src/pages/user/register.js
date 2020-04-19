@@ -88,7 +88,7 @@ class Register extends React.Component {
 								<button type="submit" className="btn btn-primary btn-block btn-lg">Crear mi cuenta</button>
 							</div>
 							<div className="m-t-20 m-b-40 p-b-40 text-inverse">
-								¿ya tienes cuenta? <Link to="/user/login-v3">Inicia sesión</Link>
+								¿ya tienes cuenta? <Link to="/login">Inicia sesión</Link>
 							</div>
 							<hr />
 							<p className="text-center">

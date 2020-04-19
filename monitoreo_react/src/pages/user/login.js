@@ -85,7 +85,7 @@ class LoginV2 extends React.Component {
 								<button type="submit" className="btn btn-success btn-block btn-lg">Iniciar Sesión</button>
 							</div>
 							<div className="m-t-20">
-								¿Aun no estas registrado? <Link to="/user/register-v3">registrarte.</Link>
+								¿Aun no estas registrado? <Link to="/register">registrarte.</Link>
 							</div>
 						</form>
 					</div>
