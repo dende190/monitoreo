@@ -10,7 +10,7 @@ class ListServer extends Component{
 		data: []
 	};
 	componentDidMount(){
-		const URI = "http://localhost:8080/";
+		const URI = window.location.protocol + "//" + window.location.hostname + ":8080/";
 		const apiServer = 'serverList';
 
 		fetch(URI + apiServer)
