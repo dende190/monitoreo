@@ -4,6 +4,7 @@ import { Panel, PanelHeader } from './../../components/panel/panel.jsx';
 import Moment from 'moment';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
+import '../../assets/css/listServer/style.css';
 
 class ListServer extends Component{
 	state = {
@@ -61,6 +62,27 @@ class ListServer extends Component{
 								row.row.current_state >= 2 ? 'Abajo'
 								: row.row.current_state === 1 ? 'Alerta'
 								: 'Arriba'
+							}
+						</span>
+					)
+				},{
+					Header: "Servicios",
+					accessor: "services",
+					Cell: row => (
+						<span className="containerServices">
+							{
+								row.row.services.map(el => 
+									<div
+										key={el.id}
+										className="containersService"
+										style={{
+										backgroundColor:
+											el.status >= 2 ? '#ff5b57'
+											: el.status === 1 ? '#f59c1a'
+											: '#00acac',
+										}}
+									>{el.name}</div>
+								)
 							}
 						</span>
 					)

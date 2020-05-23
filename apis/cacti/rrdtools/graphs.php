@@ -1,10 +1,16 @@
 <?php 
 
+require __DIR__ . '/../vendor/autoload.php';
+
+use Spipu\Html2Pdf\Html2Pdf;
+use Spipu\Html2Pdf\Exception\Html2PdfException;
+use Spipu\Html2Pdf\Exception\ExceptionFormatter;
+
 header("Access-Control-Allow-Origin: *");
 header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Allow-Methods: GET, POST');
 header("Access-Control-Allow-Headers: X-Requested-With");
-header('Content-Type: text/html; charset=utf-8');
+header('Content-Type: text/json; charset=utf-8');
 header('P3P: CP="IDC DSP COR CURa ADMa OUR IND PHY ONL COM STA"');
 
 // get database connection
@@ -140,6 +146,52 @@ function generateGraph($time = "-1d", $graphArray = []){
   	 		'name' => $graphResult[0]['title_cache'],
   	 		'base64Image' => $base64Image,
 	  	];
+	}
+
+	if (isset($_GET['report'])) {
+		$sendData = [
+			'error' => '',
+			'pathFile' => '', 
+		];
+
+		try {
+			$file = __DIR__ . '/' . time() . '_report.pdf';
+		    $html2pdf = new Html2Pdf('P', 'A4', 'fr');
+		    $html = "
+				<!DOCTYPE html>
+				<html>
+				<head>
+					<title>Reporte de servidores</title>
+				</head>
+				<body>
+					<h1>Reporte de servidores</h1>
+			";
+
+
+			foreach ($serverDataArray as $key => $server) {
+				$html .= "
+					<div>
+						<h3>" . $server['name'] . "</h3>
+						<img src='" . $server['base64Image'] . "'>
+					</div>
+				";
+			}
+
+			$html .= "
+				</body>
+				</html>
+			";
+
+		    $html2pdf->writeHTML($html);
+		    $html2pdf->Output($file, 'F');
+		    $sendData['pathFile'] = $file;
+		} catch (Html2PdfException $e) {
+		    $html2pdf->clean();
+		    $formatter = new ExceptionFormatter($e);
+		    $error = $formatter->getHtmlMessage();
+		    $sendData['error'] = $error;
+		}
+		return $sendData;
 	}
 
   	return $serverDataArray;

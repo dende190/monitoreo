@@ -1,0 +1,13 @@
+.containersService {
+	color: white;
+	display: flex;
+	justify-content: center;
+	margin: 0 8px 12px;
+    border-radius: 10px;
+    padding: 3px;
+}
+
+.containerServices {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+}

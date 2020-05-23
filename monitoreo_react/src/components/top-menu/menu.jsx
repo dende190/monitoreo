@@ -94,14 +94,6 @@ const Menu = [
       { path: '/extra/profile', title: 'Profile Page' },
     ]
   },
-  { path: '/user', icon: 'fa fa-key', title: 'Login & Register',
-    children: [
-      { path: '/user/login-v1', title: 'Login' },
-      { path: '/user/login-v2', title: 'Login v2' },
-      { path: '/user/login-v3', title: 'Login v3' },
-      { path: '/user/register-v3', title: 'Register v3' }
-    ]
-  },
   { path: '/version', icon: 'fa fa-cubes', title: 'Version', label: 'NEW',
     children: [
       { path: '/version/html', title: 'HTML' },

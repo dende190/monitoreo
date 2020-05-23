@@ -119,7 +119,32 @@ class Dashboard extends React.Component {
 		}];
 
 		this.date = new Date();
+
+		this.handleChangeSelect = event => {
+			switch (event.target.value) {
+				case '1':
+					this.setState({
+						serverUp: 8,
+						serverWarning: 0,
+						serverCritical: 0,
+						totalServer: 1,
+					});
+					break;
+				case '2':
+					this.setState({
+						serverUp: 1,
+						serverWarning: 1,
+						serverCritical: 5,
+						totalServer: 1,
+					});
+					break;
+				default:
+					
+					break;
+			}
+		}
 	}
+
 
 	componentDidMount(){
 		const URI = window.location.protocol + "//" + window.location.hostname + ":8080/";
@@ -165,11 +190,10 @@ class Dashboard extends React.Component {
 					<li className="breadcrumb-item active"><Link to="/dashboard/v2">Home</Link></li>
 				</ol>
 				<h1 className="page-header">Estado de servicios</h1>
-				<select className="browser-default custom-select mb-3">
-					<option selected>selecciona el servidor</option>
-					<option value="1">servidor1</option>
-					<option value="2">servidor2</option>
-					<option value="3">servidor3</option>
+				<select className="browser-default custom-select mb-3" onChange={ this.handleChangeSelect }>
+					<option>Todos Los Servidores</option>
+					<option value="1">LocalHost</option>
+					<option value="2">SRVWeb01</option>
 				</select>
 				<div className="row">
 					<div className="col-xl-3 col-md-6">
