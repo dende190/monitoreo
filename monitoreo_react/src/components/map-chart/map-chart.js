@@ -10,7 +10,10 @@ const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
 const markers = [
-  { markerOffset: 25, name: "Bogota", coordinates: [-74.0721, 4.711] },
+  { markerOffset: 25, name: "Colombia", coordinates: [-74.0721, 4.711] },
+  { markerOffset: 25, name: "Brasil", coordinates: [-47.8825, -15.7942] },
+  { markerOffset: 25, name: "Ecuador", coordinates: [-78.4678, -0.1807] },
+  { markerOffset: -15, name: "Venezuela", coordinates: [-66.9036, 10.4806] },
 ];
 
 const MapChart = () => {

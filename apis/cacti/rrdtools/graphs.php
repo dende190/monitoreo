@@ -29,7 +29,7 @@ function generateGraph($time = "-1d", $graphArray = []){
 		'LAST'
 	);
 	$hostNagiosQuery = $pdoNagios->prepare('SELECT address FROM nagios_hosts WHERE host_id = :serverId');
-	$hostNagiosQuery->execute([':serverId' => $_GET['hostId']]);
+	$hostNagiosQuery->execute([':serverId' => 1]);
 	$hostNagiosResult = $hostNagiosQuery->fetchAll(PDO::FETCH_ASSOC);
 
 	$hostCactiQuery = $pdoCacti->prepare('SELECT gl.id FROM host AS h JOIN graph_local AS gl ON gl.host_id = h.id WHERE hostname = :serverId');

@@ -108,7 +108,7 @@ const ServersGraph = () => {
 									<div className="text-grey">2020/01/12</div>
 								</div>
 								<div className="ml-auto text-center">
-									<div className="f-s-13">2.17.2</div>
+									<div className="f-s-13">-</div>
 								</div>
 							</div>
 							<div className="d-flex align-items-center m-b-15">
@@ -117,7 +117,7 @@ const ServersGraph = () => {
 									<div className="text-grey">2019/12/03</div>
 								</div>
 								<div className="ml-auto text-center">
-									<div className="f-s-13">3.2.2</div>
+									<div className="f-s-13">-</div>
 								</div>
 							</div>
 							<div className="d-flex align-items-center m-b-15">
@@ -126,7 +126,7 @@ const ServersGraph = () => {
 									<div className="text-grey">2020/01/12</div>
 								</div>
 								<div className="ml-auto text-center">
-									<div className="f-s-13">1.15.3</div>
+									<div className="f-s-13">-</div>
 								</div>
 							</div>
 							<div className="d-flex align-items-center m-b-15">
@@ -135,7 +135,7 @@ const ServersGraph = () => {
 									<div className="text-grey">2020/01/12</div>
 								</div>
 								<div className="ml-auto text-center">
-									<div className="f-s-13">2.17.2</div>
+									<div className="f-s-13">-</div>
 								</div>
 							</div>
 							<div className="d-flex align-items-center m-b-15">
@@ -144,7 +144,79 @@ const ServersGraph = () => {
 									<div className="text-grey">2020/01/12</div>
 								</div>
 								<div className="ml-auto text-center">
-									<div className="f-s-13">2.17.2</div>
+									<div className="f-s-13">-</div>
+								</div>
+							</div>
+							<div className="d-flex align-items-center m-b-15">
+								<div className="text-truncate">
+									<div>Python</div>
+									<div className="text-grey">2020/01/12</div>
+								</div>
+								<div className="ml-auto text-center">
+									<div className="f-s-13">-</div>
+								</div>
+							</div>
+							<div className="d-flex align-items-center m-b-15">
+								<div className="text-truncate">
+									<div>ssh</div>
+									<div className="text-grey">2020/01/12</div>
+								</div>
+								<div className="ml-auto text-center">
+									<div className="f-s-13">-</div>
+								</div>
+							</div>
+							<div className="d-flex align-items-center m-b-15">
+								<div className="text-truncate">
+									<div>apt</div>
+									<div className="text-grey">2020/01/12</div>
+								</div>
+								<div className="ml-auto text-center">
+									<div className="f-s-13">-</div>
+								</div>
+							</div>
+							<div className="d-flex align-items-center m-b-15">
+								<div className="text-truncate">
+									<div>openal</div>
+									<div className="text-grey">2020/01/12</div>
+								</div>
+								<div className="ml-auto text-center">
+									<div className="f-s-13">-</div>
+								</div>
+							</div>
+							<div className="d-flex align-items-center m-b-15">
+								<div className="text-truncate">
+									<div>htop</div>
+									<div className="text-grey">2020/01/12</div>
+								</div>
+								<div className="ml-auto text-center">
+									<div className="f-s-13">-</div>
+								</div>
+							</div>
+							<div className="d-flex align-items-center m-b-15">
+								<div className="text-truncate">
+									<div>vim</div>
+									<div className="text-grey">2020/01/12</div>
+								</div>
+								<div className="ml-auto text-center">
+									<div className="f-s-13">-</div>
+								</div>
+							</div>
+							<div className="d-flex align-items-center m-b-15">
+								<div className="text-truncate">
+									<div>perl</div>
+									<div className="text-grey">2020/01/12</div>
+								</div>
+								<div className="ml-auto text-center">
+									<div className="f-s-13">-</div>
+								</div>
+							</div>
+							<div className="d-flex align-items-center m-b-15">
+								<div className="text-truncate">
+									<div>mongo</div>
+									<div className="text-grey">2020/01/12</div>
+								</div>
+								<div className="ml-auto text-center">
+									<div className="f-s-13">-</div>
 								</div>
 							</div>
 						</div>

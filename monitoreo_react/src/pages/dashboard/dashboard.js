@@ -1,8 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import NVD3Chart from 'react-nvd3';
 import d3 from 'd3';
-import { Panel, PanelHeader } from './../../components/panel/panel.jsx';
+import { Panel, PanelHeader, PanelBody, PanelFooter } from './../../components/panel/panel.jsx';
+import { Line } from 'react-chartjs-2';
+import Sparkline from '@rowno/sparkline';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 import MapChart from '../../components/map-chart/map-chart';
 
 class Dashboard extends React.Component {
@@ -14,15 +17,11 @@ class Dashboard extends React.Component {
 			serverWarning: 0,
 			serverCritical: 0,
 			totalServer: 0,
-			totalUserConnected: 0
+			totalUserConnected: 0,
+			logger: localStorage.user
 		}
 		
-		this.formatDate = (d) => {
-			var monthsName = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-			d = new Date(d);
-			d = monthsName[d.getMonth()] + ' ' + d.getDate();
-			return d;
-		}
+
 		this.getDate = (minusDate) => {
 			var d = new Date();
 			d = d.setDate(d.getDate() - minusDate);
@@ -35,6 +34,7 @@ class Dashboard extends React.Component {
 			growOnHover: false,
 			arcsRadius: [
 				{ inner: 0.65, outer: 0.93 },
+				{ inner: 0.6, outer: 1 },
 				{ inner: 0.6, outer: 1 }
 			],
 			margin: { 'left': 10,'right':  10,'top': 10,'bottom': 10 },
@@ -42,8 +42,9 @@ class Dashboard extends React.Component {
 			labelFormat: d3.format(',.0f')
 		};
 		this.donutChartData = [
-			{ 'label': 'Ataque1', 'value': 784466, 'color': '#348fe2' }, 
-			{ 'label': 'Ataque2', 'value': 416747, 'color': '#00ACAC' }
+			{ 'label': 'Ingresos sospechozos', 'value': 17, 'color': '#5AC8FA' }, 
+			{ 'label': 'Posible SqlInjection', 'value': 13, 'color': '#348fe2' },
+			{ 'label': 'Posible XSS', 'value': 12, 'color': '#76fb66' }
 		];
 		
 		this.areaChartOptions = {
@@ -59,7 +60,7 @@ class Dashboard extends React.Component {
 			},
 			xAxis: {
 				tickFormat: function(d) {
-					var monthsName = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+					var monthsName = ['Jan', 'Feb', 'Mar', 'Apr', 'May'];
 					d = new Date(d);
 					d = monthsName[d.getMonth()] + ' ' + d.getDate();
 					return d;
@@ -67,56 +68,146 @@ class Dashboard extends React.Component {
 			}
 		};
 		this.areaChartData = [{
-			'key' : 'Unique Visitors',
+			'key' : 'Ingresos sospechozos al servidor',
 			'color' : '#5AC8FA',
 			'values' : [ 
-				{ x: this.getDate(77), y: 13 }, { x: this.getDate(76), y: 13 },  { x: this.getDate(75), y: 6  }, 
-				{ x: this.getDate(73), y: 6  },  { x: this.getDate(72), y: 6  },  { x: this.getDate(71), y: 5  },  { x: this.getDate(70), y: 5  }, 
-				{ x: this.getDate(69), y: 5  },  { x: this.getDate(68), y: 6  },  { x: this.getDate(67), y: 7  },  { x: this.getDate(66), y: 6  }, 
-				{ x: this.getDate(65), y: 9  },  { x: this.getDate(64), y: 9  },  { x: this.getDate(63), y: 8  },  { x: this.getDate(62), y: 10 }, 
-				{ x: this.getDate(61), y: 10 },  { x: this.getDate(60), y: 10 },  { x: this.getDate(59), y: 10 },  { x: this.getDate(58), y: 9  }, 
-				{ x: this.getDate(57), y: 9  },  { x: this.getDate(56), y: 10 },  { x: this.getDate(55), y: 9  },  { x: this.getDate(54), y: 9  }, 
-				{ x: this.getDate(53), y: 8  },  { x: this.getDate(52), y: 8  },  { x: this.getDate(51), y: 8  },  { x: this.getDate(50), y: 8  }, 
-				{ x: this.getDate(49), y: 8  },  { x: this.getDate(48), y: 7  },  { x: this.getDate(47), y: 7  },  { x: this.getDate(46), y: 6  }, 
-				{ x: this.getDate(45), y: 6  },  { x: this.getDate(44), y: 6  },  { x: this.getDate(43), y: 6  },  { x: this.getDate(42), y: 5  }, 
-				{ x: this.getDate(41), y: 5  },  { x: this.getDate(40), y: 4  },  { x: this.getDate(39), y: 4  },  { x: this.getDate(38), y: 5  }, 
-				{ x: this.getDate(37), y: 5  },  { x: this.getDate(36), y: 5  },  { x: this.getDate(35), y: 7  },  { x: this.getDate(34), y: 7  }, 
-				{ x: this.getDate(33), y: 7  },  { x: this.getDate(32), y: 10 },  { x: this.getDate(31), y: 9  },  { x: this.getDate(30), y: 9  }, 
-				{ x: this.getDate(29), y: 10 },  { x: this.getDate(28), y: 11 },  { x: this.getDate(27), y: 11 },  { x: this.getDate(26), y: 8  }, 
-				{ x: this.getDate(25), y: 8  },  { x: this.getDate(24), y: 7  },  { x: this.getDate(23), y: 8  },  { x: this.getDate(22), y: 9  }, 
-				{ x: this.getDate(21), y: 8  },  { x: this.getDate(20), y: 9  },  { x: this.getDate(19), y: 10 },  { x: this.getDate(18), y: 9  }, 
-				{ x: this.getDate(17), y: 10 },  { x: this.getDate(16), y: 16 },  { x: this.getDate(15), y: 17 },  { x: this.getDate(14), y: 16 }, 
-				{ x: this.getDate(13), y: 17 },  { x: this.getDate(12), y: 16 },  { x: this.getDate(11), y: 15 },  { x: this.getDate(10), y: 14 }, 
-				{ x: this.getDate(9) , y: 24 },  { x: this.getDate(8) , y: 18 },  { x: this.getDate(7) , y: 15 },  { x: this.getDate(6) , y: 14 }, 
-				{ x: this.getDate(5) , y: 16 },  { x: this.getDate(4) , y: 16 },  { x: this.getDate(3) , y: 17 },  { x: this.getDate(2) , y: 7  }, 
-				{ x: this.getDate(1) , y: 7  },  { x: this.getDate(0) , y: 7  }
+				{ x: this.getDate(7) , y: 1 },  { x: this.getDate(6) , y: 4 }, 
+				{ x: this.getDate(5) , y: 1 },  { x: this.getDate(4) , y: 1 },  { x: this.getDate(3) , y: 2 },  { x: this.getDate(2) , y: 2  }, 
+				{ x: this.getDate(1) , y: 3  },  { x: this.getDate(0) , y: 2  }
 			]
 		}, {
-			'key' : 'Page Views',
+			'key' : 'Posible SqlInjection',
 			'color' : '#348fe2',
 			'values' : [ 
-				{ x: this.getDate(77), y: 14 },  { x: this.getDate(76), y: 13 },  { x: this.getDate(75), y: 15 }, 
-				{ x: this.getDate(73), y: 14 },  { x: this.getDate(72), y: 13 },  { x: this.getDate(71), y: 15 },  { x: this.getDate(70), y: 16 }, 
-				{ x: this.getDate(69), y: 16 },  { x: this.getDate(68), y: 14 },  { x: this.getDate(67), y: 14 },  { x: this.getDate(66), y: 13 }, 
-				{ x: this.getDate(65), y: 12 },  { x: this.getDate(64), y: 13 },  { x: this.getDate(63), y: 13 },  { x: this.getDate(62), y: 15 }, 
-				{ x: this.getDate(61), y: 16 },  { x: this.getDate(60), y: 16 },  { x: this.getDate(59), y: 17 },  { x: this.getDate(58), y: 17 }, 
-				{ x: this.getDate(57), y: 18 },  { x: this.getDate(56), y: 15 },  { x: this.getDate(55), y: 15 },  { x: this.getDate(54), y: 15 }, 
-				{ x: this.getDate(53), y: 19 },  { x: this.getDate(52), y: 19 },  { x: this.getDate(51), y: 18 },  { x: this.getDate(50), y: 18 }, 
-				{ x: this.getDate(49), y: 17 },  { x: this.getDate(48), y: 16 },  { x: this.getDate(47), y: 18 },  { x: this.getDate(46), y: 18 }, 
-				{ x: this.getDate(45), y: 18 },  { x: this.getDate(44), y: 16 },  { x: this.getDate(43), y: 14 },  { x: this.getDate(42), y: 14 }, 
-				{ x: this.getDate(41), y: 13 },  { x: this.getDate(40), y: 14 },  { x: this.getDate(39), y: 13 },  { x: this.getDate(38), y: 10 }, 
-				{ x: this.getDate(37), y: 9  },  { x: this.getDate(36), y: 10 },  { x: this.getDate(35), y: 11 },  { x: this.getDate(34), y: 11 }, 
-				{ x: this.getDate(33), y: 11 },  { x: this.getDate(32), y: 10 },  { x: this.getDate(31), y: 9  },  { x: this.getDate(30), y: 10 }, 
-				{ x: this.getDate(29), y: 13 },  { x: this.getDate(28), y: 14 },  { x: this.getDate(27), y: 14 },  { x: this.getDate(26), y: 13 }, 
-				{ x: this.getDate(25), y: 12 },  { x: this.getDate(24), y: 11 },  { x: this.getDate(23), y: 13 },  { x: this.getDate(22), y: 13 }, 
-				{ x: this.getDate(21), y: 13 },  { x: this.getDate(20), y: 13 },  { x: this.getDate(19), y: 14 },  { x: this.getDate(18), y: 13 }, 
-				{ x: this.getDate(17), y: 13 },  { x: this.getDate(16), y: 19 },  { x: this.getDate(15), y: 21 },  { x: this.getDate(14), y: 22 },
-				{ x: this.getDate(13), y: 25 },  { x: this.getDate(12), y: 24 },  { x: this.getDate(11), y: 24 },  { x: this.getDate(10), y: 22 }, 
-				{ x: this.getDate(9) , y: 16 },  { x: this.getDate(8) , y: 15 },  { x: this.getDate(7) , y: 12 },  { x: this.getDate(6) , y: 12 }, 
-				{ x: this.getDate(5) , y: 15 },  { x: this.getDate(4) , y: 15 },  { x: this.getDate(3) , y: 15 },  { x: this.getDate(2) , y: 18 }, 
-				{ x: this.getDate(2) , y: 18 },  { x: this.getDate(0) , y: 17 }
+				{ x: this.getDate(7) , y: 1 },  { x: this.getDate(6) , y: 2 }, 
+				{ x: this.getDate(5) , y: 1 },  { x: this.getDate(4) , y: 3 },  { x: this.getDate(3) , y: 1 },  { x: this.getDate(2) , y: 1 }, 
+				{ x: this.getDate(1) , y: 1 },  { x: this.getDate(0) , y: 2 }
+			]
+		}, {
+			'key' : 'Posible XSS',
+			'color' : '#76fb66',
+			'values' : [ 
+				{ x: this.getDate(7) , y: 1 },  { x: this.getDate(6) , y: 1 }, 
+				{ x: this.getDate(5) , y: 1 },  { x: this.getDate(4) , y: 1 },  { x: this.getDate(3) , y: 1 },  { x: this.getDate(2) , y: 2 }, 
+				{ x: this.getDate(1) , y: 2 },  { x: this.getDate(0) , y: 2 }
 			]
 		}];
+
+		this.lineChartData = {
+			labels: ['JAN', 'FEB', 'MAR', 'APR', 'MAY'],
+			datasets: [{
+				label: 'Visitas LocalHost',
+				fill: false,
+				lineTension: 0.1,
+				backgroundColor: 'rgba(0, 172, 172, 0.25)',
+				borderColor: '#00acac',
+				borderWidth: 2,
+				pointBorderColor: '#00acac',
+				pointBackgroundColor: '#fff',
+				pointBorderWidth: 2,
+				pointHoverRadius: 5,
+				pointHoverBackgroundColor: '#fff',
+				pointHoverBorderColor: '#00acac',
+				pointHoverBorderWidth: 3,
+				pointRadius: 3,
+				pointHitRadius: 10,
+				data: [3, 2, 4, 1, 5]
+			},{
+				label: 'Visitas SRVWeb01',
+				fill: false,
+				lineTension: 0.1,
+				backgroundColor: 'rgba(255, 91, 87, 0.25)',
+				borderColor: '#ff5b57',
+				borderWidth: 2,
+				pointBorderColor: '#ff5b57',
+				pointBackgroundColor: '#fff',
+				pointBorderWidth: 2,
+				pointHoverRadius: 5,
+				pointHoverBackgroundColor: '#fff',
+				pointHoverBorderColor: '#ff5b57',
+				pointHoverBorderWidth: 3,
+				pointRadius: 3,
+				pointHitRadius: 10,
+				data: [0, 0, 0, 0, 0]
+			},{
+				label: 'Visitas SRVWeb02',
+				fill: false,
+				lineTension: 0.1,
+				backgroundColor: 'rgba(245, 156, 26, 0.25)',
+				borderColor: '#f59c1a',
+				borderWidth: 2,
+				pointBorderColor: '#f59c1a',
+				pointBackgroundColor: '#fff',
+				pointBorderWidth: 2,
+				pointHoverRadius: 5,
+				pointHoverBackgroundColor: '#fff',
+				pointHoverBorderColor: '#f59c1a',
+				pointHoverBorderWidth: 3,
+				pointRadius: 3,
+				pointHitRadius: 10,
+				data: [21, 15, 19, 24, 20]
+			},{
+				label: 'Visitas SRVWeb03',
+				fill: false,
+				lineTension: 0.1,
+				backgroundColor: 'rgba(52, 143, 226, 0.25)',
+				borderColor: '#348fe2',
+				borderWidth: 2,
+				pointBorderColor: '#348fe2',
+				pointBackgroundColor: '#fff',
+				pointBorderWidth: 2,
+				pointHoverRadius: 5,
+				pointHoverBackgroundColor: '#fff',
+				pointHoverBorderColor: '#348fe2',
+				pointHoverBorderWidth: 3,
+				pointRadius: 3,
+				pointHitRadius: 10,
+				data: [10, 7, 20, 13, 14]
+			}]
+		}
+
+		this.lineChartOptions = { 
+			maintainAspectRatio: false, 
+			scales: { 
+				yAxes: [{ 
+					ticks: { 
+						beginAtZero:true,
+						fontColor: 'black'
+					}
+				}],
+				xAxes: [{ 
+					ticks: { 
+						fontColor: 'black'
+					}
+				}]
+			},
+			legend: {
+				labels: {
+					fontColor: 'black'
+				}
+			}
+		}
+
+		this.sparklineLocal = [{
+			values: [3, 2, 4, 1, 5],
+			colors: { area: 'transparent', line: '#ff5b57' }
+		}];
+		
+		this.sparklineServer1 = [{
+			values: [0, 0, 0, 0, 0],
+			colors: { area: 'transparent', line: '#f59c1a' }
+		}];
+		
+		this.sparklineServer2 = [{
+			values: [21, 15, 19, 24, 20],
+			colors: { area: 'transparent', line: '#00acac' }
+		}];
+		
+		this.sparklineServer3 = [{
+			values: [10, 7, 20, 13, 14],
+			colors: { area: 'transparent', line: '#348fe2' }
+		}];
+		
 
 		this.date = new Date();
 
@@ -124,7 +215,7 @@ class Dashboard extends React.Component {
 			switch (event.target.value) {
 				case '1':
 					this.setState({
-						serverUp: 8,
+						serverUp: 4,
 						serverWarning: 0,
 						serverCritical: 0,
 						totalServer: 1,
@@ -132,14 +223,64 @@ class Dashboard extends React.Component {
 					break;
 				case '2':
 					this.setState({
-						serverUp: 1,
+						serverUp: 2,
 						serverWarning: 1,
-						serverCritical: 5,
+						serverCritical: 0,
+						totalServer: 1,
+					});
+					break;
+				case '3':
+					this.setState({
+						serverUp: 2,
+						serverWarning: 0,
+						serverCritical: 3,
+						totalServer: 1,
+					});
+					break;
+				case '4':
+					this.setState({
+						serverUp: 1,
+						serverWarning: 0,
+						serverCritical: 2,
 						totalServer: 1,
 					});
 					break;
 				default:
-					
+					const URI = window.location.protocol + "//" + window.location.hostname + ":8080/";
+					console.log(URI);
+					const apiServer = 'nagiosStatusServices';
+					let serverUp = 0;
+					let serverWarning = 0;
+					let serverCritical = 0;
+
+					fetch(URI + apiServer)
+						.then(res => res.json())
+						.then(data => {
+							if(!data){
+								return;
+							}
+
+							data.map(server => {
+								switch (server.current_state) {
+									case 0:
+										serverUp++;
+										break;
+									case 1:
+										serverWarning++;
+										break;
+									default:
+										serverCritical++;
+										break;
+								}
+							});
+
+							this.setState({
+								serverUp,
+								serverWarning,
+								serverCritical,
+								totalServer: data.length,
+							});
+						})
 					break;
 			}
 		}
@@ -184,6 +325,9 @@ class Dashboard extends React.Component {
 			})
 	}
 	render() {
+		if (!this.state.logger) {
+			return <Redirect to='/login'/>;
+		}
 		return (
 			<div>
 				<ol className="breadcrumb float-xl-right">
@@ -194,6 +338,8 @@ class Dashboard extends React.Component {
 					<option>Todos Los Servidores</option>
 					<option value="1">LocalHost</option>
 					<option value="2">SRVWeb01</option>
+					<option value="3">SRVWeb02</option>
+					<option value="4">SRVWeb03</option>
 				</select>
 				<div className="row">
 					<div className="col-xl-3 col-md-6">
@@ -275,11 +421,18 @@ class Dashboard extends React.Component {
 									<NVD3Chart type="pieChart" datum={this.donutChartData} height={180} options={this.donutChartOptions} x="label" y="value" />
 								</div>
 								<ul className="chart-legend f-s-11">
-									<li><i className="fa fa-circle fa-fw text-blue f-s-9 m-r-5 t-minus-1"></i> 34.0% <span>Ataque1</span></li>
-									<li><i className="fa fa-circle fa-fw text-teal f-s-9 m-r-5 t-minus-1"></i> 56.0% <span>Ataque2</span></li>
+									<li><i className="fa fa-circle fa-fw text-blue f-s-9 m-r-5 t-minus-1"></i> 39% <span>Ingresos sospechozos al servidor</span></li>
+									<li><i className="fa fa-circle fa-fw text-teal f-s-9 m-r-5 t-minus-1"></i> 31% <span>Posible SqlInjection</span></li>
+									<li><i className="fa fa-circle fa-fw text-teal f-s-9 m-r-5 t-minus-1"></i> 30% <span>Posible XSS</span></li>
 								</ul>
 							</div>
 						</div>
+						<Panel>
+							<PanelHeader>Analitica de los servidores</PanelHeader>
+							<PanelBody>
+								<Line data={ this.lineChartData } height={ 300 } options={ this.lineChartOptions } />
+							</PanelBody>
+						</Panel>
 					</div>
 					<div className="col-xl-4">
 						<Panel>
@@ -290,6 +443,60 @@ class Dashboard extends React.Component {
 								<MapChart />
 							</div>
 						</Panel>
+						<Panel>
+							<PanelHeader>Detalle de analitica</PanelHeader>
+							<PanelBody className="p-0">
+								<div className="table-responsive">
+									<table className="table table-valign-middle mb-0">
+										<thead>
+											<tr>	
+												<th className="p-l-15">Servidor</th>
+												<th>Total</th>
+												<th className="p-r-15">Trend</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td className="p-l-15"><label className="label label-danger">LocalHost</label></td>
+												<td>5 <span className="text-success"><i className="fa fa-arrow-up"></i></span></td>
+												<td className="p-r-15">
+													<Sparkline width={100} height={20} lines={this.sparklineLocal} />
+												</td>
+											</tr>
+											<tr>
+												<td className="p-l-15"><label className="label label-warning">SRVWeb01</label></td>
+												<td>0 </td>
+												<td className="p-r-15">
+													<Sparkline width={100} height={20} lines={this.sparklineServer1} />
+												</td>
+											</tr>
+											<tr>
+												<td className="p-l-15"><label className="label label-success">SRVWeb02</label></td>
+												<td>20 <span className="text-success"><i className="fa fa-arrow-down"></i></span></td>
+												<td className="p-r-15">
+													<Sparkline width={100} height={20} lines={this.sparklineServer2} />
+												</td>
+											</tr>
+											<tr>
+												<td className="p-l-15"><label className="label label-primary">SRVWeb03</label></td>
+												<td>15 <span className="text-success"><i className="fa fa-arrow-up"></i></span></td>
+												<td className="p-r-15">
+													<Sparkline width={100} height={20} lines={this.sparklineServer3} />
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</PanelBody>
+						</Panel>
+					</div>
+				</div>
+				<div className="row">
+					<div className="col-xl-8">
+						
+					</div>
+					<div className="col-xl-4">
+								
 					</div>
 				</div>
 			</div>
