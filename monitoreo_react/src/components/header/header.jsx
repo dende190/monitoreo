@@ -6,7 +6,7 @@ import DropdownProfile from './dropdown/profile.jsx';
 import SearchForm from './search/form.jsx';
 import DropdownMegaMenu from './dropdown/mega.jsx';
 import { PageSettings } from './../../config/page-settings.js';
-import ercLogo from '../../assets/img/logo/erc-logo.jpeg';
+import ercLogo from '../../assets/img/logo/erc-nuevo.jpeg';
 
 class Header extends React.Component {
 	constructor(props) {
@@ -32,7 +32,7 @@ class Header extends React.Component {
 								</button>
 							)}
 							<Link to="/" className="navbar-brand">
-								<img src={ ercLogo } alt="Logo ERC" width={100}/>
+								<img src={ ercLogo } alt="Logo ERC" width={75} height={40} />
 							</Link>
 							
 							{pageHeaderMegaMenu && (

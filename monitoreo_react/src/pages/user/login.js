@@ -18,7 +18,8 @@ class LoginV2 extends React.Component {
 			bg6: false
 		}
 		this.selectBg = this.selectBg.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    	this.handleSubmit = this.handleSubmit.bind(this);
+    	localStorage.clear();
 	}
 
 	selectBg(e, active, bg) {
@@ -47,7 +48,7 @@ class LoginV2 extends React.Component {
 	
 	handleSubmit(event) {
 		event.preventDefault();
-		localStorage.setItem('user', 'Test');
+		localStorage.setItem('user', 'SOC ERC');
     	this.props.history.push('/');
   	}
   

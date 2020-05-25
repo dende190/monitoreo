@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 class DropdownProfile extends React.Component {
@@ -17,6 +18,7 @@ class DropdownProfile extends React.Component {
 			dropdownOpen: !prevState.dropdownOpen
 		}));
 	}
+
   
 	render() {
 		return (
@@ -26,9 +28,9 @@ class DropdownProfile extends React.Component {
 					<span className="d-none d-md-inline">{ this.state.userName }</span> <b className="caret"></b>
 				</DropdownToggle>
 				<DropdownMenu className="dropdown-menu dropdown-menu-right" tag="ul">
-					<DropdownItem>Editar Perfil</DropdownItem>
-					<div className="dropdown-divider"></div>
-					<DropdownItem>Cerrar Sesion</DropdownItem>
+					<DropdownItem>
+						<Link to="/login">Cerrar Sesion</Link>
+					</DropdownItem>
 				</DropdownMenu>
 			</Dropdown>
 		);

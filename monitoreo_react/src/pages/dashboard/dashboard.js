@@ -17,7 +17,7 @@ class Dashboard extends React.Component {
 			serverWarning: 0,
 			serverCritical: 0,
 			totalServer: 0,
-			totalUserConnected: 0,
+			totalUserConnected: 39,
 			logger: localStorage.user
 		}
 		
@@ -219,6 +219,7 @@ class Dashboard extends React.Component {
 						serverWarning: 0,
 						serverCritical: 0,
 						totalServer: 1,
+						totalUserConnected: 5,
 					});
 					break;
 				case '2':
@@ -227,6 +228,7 @@ class Dashboard extends React.Component {
 						serverWarning: 1,
 						serverCritical: 0,
 						totalServer: 1,
+						totalUserConnected: 0,
 					});
 					break;
 				case '3':
@@ -235,6 +237,7 @@ class Dashboard extends React.Component {
 						serverWarning: 0,
 						serverCritical: 3,
 						totalServer: 1,
+						totalUserConnected: 20,
 					});
 					break;
 				case '4':
@@ -243,6 +246,7 @@ class Dashboard extends React.Component {
 						serverWarning: 0,
 						serverCritical: 2,
 						totalServer: 1,
+						totalUserConnected: 14,
 					});
 					break;
 				default:
@@ -392,11 +396,11 @@ class Dashboard extends React.Component {
 							<div className="stats-icon stats-icon-lg"><i className="fa fa-comment-alt fa-fw"></i></div>
 							<div className="stats-content">
 								<div className="stats-title">Total usuarios conectados</div>
-								<div className="stats-number">20</div>
+								<div className="stats-number">{this.state.totalUserConnected}</div>
 								<div className="stats-progress progress">
 									<div className="progress-bar" style={{width: '54.9%'}}></div>
 								</div>
-								<div className="stats-desc">Maximo (54.9%)</div>
+								<div className="stats-desc">-</div>
 							</div>
 						</div>
 					</div>

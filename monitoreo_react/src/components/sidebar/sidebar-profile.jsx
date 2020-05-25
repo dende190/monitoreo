@@ -32,18 +32,15 @@ class SidebarProfile extends React.Component {
 								</div>
 								<div className="info">
 									<b className="caret pull-right"></b>
-									Test1
-									<small>Desarrollo</small>
+									SOC
+									<small>ERC</small>
 								</div>
 							</Link>
 						</li>
 						<li>
 							<ul className={"nav nav-profile " + (this.state.profileActive && !pageSidebarMinify ? "d-block " : "")}>
 								<li>
-									<Link to="/"><i className="fa fa-cog"></i> Editar perfil</Link>
-								</li>
-								<li>
-									<Link to="/">Cerrar Sesion</Link>
+									<Link to="/login">Cerrar Sesion</Link>
 								</li>
 							</ul>
 						</li>
