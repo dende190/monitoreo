@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { PageSettings } from './../../config/page-settings.js';
+import krakenImage from '../../assets/img/login-bg/kraken.jpeg';
 
 class LoginV2 extends React.Component {
 	static contextType = PageSettings;
@@ -8,32 +9,8 @@ class LoginV2 extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {
-			activeBg: '/assets/img/login-bg/login-bg-17.jpg',
-			bg1: true,
-			bg2: false,
-			bg3: false,
-			bg4: false,
-			bg5: false,
-			bg6: false
-		}
-		this.selectBg = this.selectBg.bind(this);
     	this.handleSubmit = this.handleSubmit.bind(this);
     	localStorage.clear();
-	}
-
-	selectBg(e, active, bg) {
-		e.preventDefault();
-
-		this.setState(state => ({
-			activeBg: bg,
-			bg1: (active === 'bg1') ? true : false,
-			bg2: (active === 'bg2') ? true : false,
-			bg3: (active === 'bg3') ? true : false,
-			bg4: (active === 'bg4') ? true : false,
-			bg5: (active === 'bg5') ? true : false,
-			bg6: (active === 'bg6') ? true : false
-		}));
 	}
 
 	componentDidMount() {
@@ -56,7 +33,7 @@ class LoginV2 extends React.Component {
 		return (
 			<React.Fragment>
 				<div className="login-cover">
-					<div className="login-cover-image" style={{ backgroundImage: 'url(' + this.state.activeBg + ')'}}></div>
+					<div className="login-cover-image" style={{ backgroundImage: 'url(' + krakenImage + ')'}}></div>
 					<div className="login-cover-bg"></div>
 				</div>
 		
