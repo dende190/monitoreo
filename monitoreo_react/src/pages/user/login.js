@@ -9,6 +9,7 @@ class LoginV2 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    localStorage.clear();
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handeInput = this.handeInput.bind(this);

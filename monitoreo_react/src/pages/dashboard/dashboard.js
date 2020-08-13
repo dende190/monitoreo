@@ -13,12 +13,12 @@ class Dashboard extends React.Component {
 		super(props);
 
 		this.state = {
-			serverUp: 0,
-			serverWarning: 0,
-			serverCritical: 0,
+			serverUp: 9,
+			serverWarning: 1,
+			serverCritical: 5,
 			totalServer: 0,
 			totalUserConnected: 39,
-			logger: localStorage.user
+			logger: localStorage.id
 		}
 		
 
