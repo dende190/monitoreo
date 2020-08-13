@@ -9,7 +9,7 @@ class DropdownProfile extends React.Component {
 		this.toggle = this.toggle.bind(this);
 		this.state = {
 			dropdownOpen: false,
-			userName: localStorage.user
+			userName: localStorage.firstname + ' ' + localStorage.lastname
 		};
 	}
 

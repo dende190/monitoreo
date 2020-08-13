@@ -20,8 +20,10 @@ app.use((req, res, next) => {
 //Routes
 //// Get data nagios (dashboard)
 app.get('/nagiosStatusServices', (req, res) => {
-	const queryGetStatusServices = "SELECT current_state, output FROM nagios_servicestatus";
-	connectionMysql.query(queryGetStatusServices, (err, result, fields) => {
+	console.log(req);
+	return;
+	const querySaveUser = 'INSERT INTO users(firstname, lastname, username, email, phone, password) ?';
+	connectionMysql.query(querySaveUser,  (err, result, fields) => {
 		if(result){
 			return res.json(result);
 		}

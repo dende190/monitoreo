@@ -7,6 +7,8 @@ import ServersGraph from '../pages/serversGraph/serversGraph'
 import Login from '../pages/user/login';
 import Register from '../pages/user/register';
 import Newuser from '../pages/user/newuser';
+import Listuser from '../pages/user/listuser';
+import FileLogs from '../pages/fileLogs/fileLogs';
 
 const routes = [
   {
@@ -50,6 +52,19 @@ const routes = [
     exact: true,
     component: () => <Newuser />
   },
+  {
+    path: '/listuser',
+    title: 'Lista usuarios',
+    exact: true,
+    component: () => <Listuser />
+  },
+  {
+    path: '/fileLogs',
+    title: 'Logs',
+    exact: true,
+    component: () => <FileLogs />
+  },
+  
 ];
 
 

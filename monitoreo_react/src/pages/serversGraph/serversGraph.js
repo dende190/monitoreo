@@ -226,48 +226,24 @@ const ServersGraph = () => {
 					<div className="card border-0 bg-dark text-white mb-3">
 						<div className="card-body contrainersScroll">
 							<div className="mb-3 text-grey">
-								<b>ARCHIVOS MONITOREADOS</b>
+								<b>DIRECTORIOS MONITOREADOS</b>
 								<span className="ml-2">
 									<i className="fa fa-info-circle" id="popover8"></i>
 									<UncontrolledPopover trigger="hover" placement="top" target="popover8">
-										<PopoverHeader>Lista de archivos:</PopoverHeader>
-										<PopoverBody>Lista de archivos que se estan monitoreando.</PopoverBody>
+										<PopoverHeader>Lista de directorios:</PopoverHeader>
+										<PopoverBody>Lista de directorios que se estan monitoreando.</PopoverBody>
 									</UncontrolledPopover>
 								</span>
 							</div>
 							<div className="row align-items-center p-b-1">
 								<div className="col-8">
-									<div className="m-b-2 text-truncate">Test1</div>
-									<div className="text-grey m-b-2 f-s-11">creacion: 2020/04/10</div>
-									<div className="text-grey m-b-2 f-s-11">ultima modificacion: 2020/04/16</div>
+									<div className="m-b-2 text-truncate">/tmp/test</div>
+									<div className="text-grey m-b-2 f-s-11">creacion: 2020/07/21</div>
+									<div className="text-grey m-b-2 f-s-11">ultima modificacion: 2020/07/21</div>
 									<div className="text-grey f-s-11 m-b-15 text-truncate">
 										Tamaño: 1GB
 									</div>
-									<Link className="btn btn-xs btn-indigo f-s-10 pl-2 pr-2">Incidencias</Link>
-								</div>
-							</div>
-							<hr className="bg-white-transparent-2 m-t-20 m-b-20" />
-							<div className="row align-items-center">
-								<div className="col-8">
-									<div className="m-b-2 text-truncate">Test2</div>
-									<div className="text-grey m-b-2 f-s-11">creacion: 2020/04/18</div>
-									<div className="text-grey m-b-2 f-s-11">ultima modificacion: 2020/04/18</div>
-									<div className="text-grey f-s-11 m-b-15 text-truncate">
-										Tamaño: 3GB
-									</div>
-									<Link className="btn btn-xs btn-indigo f-s-10 pl-2 pr-2">Incidencias</Link>
-								</div>
-							</div>
-							<hr className="bg-white-transparent-2 m-t-20 m-b-20" />
-							<div className="row align-items-center">
-								<div className="col-8">
-									<div className="m-b-2 text-truncate">Test3</div>
-									<div className="text-grey m-b-2 f-s-11">creacion: 2020/05/09</div>
-									<div className="text-grey m-b-2 f-s-11">ultima modificacion: 2020/05/20</div>
-									<div className="text-grey f-s-11 m-b-15 text-truncate">
-										Tamaño: 200MG
-									</div>
-									<Link className="btn btn-xs btn-indigo f-s-10 pl-2 pr-2">Incidencias</Link>
+									<Link to="fileLogs" className="btn btn-xs btn-indigo f-s-10 pl-2 pr-2">Incidencias</Link>
 								</div>
 							</div>
 						</div>

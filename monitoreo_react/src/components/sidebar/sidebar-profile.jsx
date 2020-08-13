@@ -7,7 +7,8 @@ class SidebarProfile extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			profileActive: 0
+			profileActive: 0,
+			userName: localStorage.firstname + ' ' + localStorage.lastname
 		};
 		this.handleProfileExpand = this.handleProfileExpand.bind(this);
 	}
@@ -32,7 +33,7 @@ class SidebarProfile extends React.Component {
 								</div>
 								<div className="info">
 									<b className="caret pull-right"></b>
-									SOC
+									{this.state.userName}
 									<small>ERC</small>
 								</div>
 							</Link>
